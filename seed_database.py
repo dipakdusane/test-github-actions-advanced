@@ -19,6 +19,7 @@ DATABASE_PASS = os.getenv('DATABASE_PASS')
 DATABASE_HOST = os.getenv('DATABASE_HOST')
 DATABASE_PORT = os.getenv('DATABASE_PORT')
 
+print("DATABASE_NAME: %s, DATABASE_USER: %s".format(DATABASE_NAME, DATABASE_USER))
 
 # connect to the database
 try:
