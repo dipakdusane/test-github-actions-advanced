@@ -3,14 +3,14 @@ on:
   push:
   workflow_dispatch:
   schedule: 
-    - cron: '*/9 * * * *'
+    - cron: '10 09 * * *'
   
 jobs:
   date:
     runs-on: ubuntu-latest
     steps:
       - name: Create a tag for the archive
-        run: echo ":: set-output name=TAG::$(date +%F)"
+        run: echo "::set-output name=TAG::$(date +%F)"
         id: tag
       
       - name: Starting the daily build for ${{ steps.tag.outputs.TAG }}
