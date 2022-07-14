@@ -38,6 +38,9 @@ jobs:
         with:
           python-version: '3.x'
       
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+
       - name: Seed the datbase
         run: python seed_database.py 
         env: 
