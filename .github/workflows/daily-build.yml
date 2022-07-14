@@ -1,0 +1,29 @@
+name: Daily Build
+on: 
+  push:
+  workflow_dispatch:
+  schedule: 
+    - cron: '*/9 * * * *'
+  
+jobs:
+  date:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Create a tag for the archive
+        run: echo ":: set-output name=TAG::$(date +%F)"
+        id: tag
+      
+      - name: Starting the daily build for ${{ steps.tag.outputs.TAG }}
+        run: echo "The tag is ${{ steps.tag.outputs.TAG }}"
+      
+      - name: Check out the code
+        uses: actions/checkout@v2
+
+      - name: Create the artifact
+        run: tar -cvf daily-${{ steps.tag.outputs.TAG }}.tar ./*
+
+      - name: Upload the artifact
+        uses: actions/upload-artifact@v2
+        with: 
+          name: daily-${{ steps.tag.outputs.TAG }}.tar
+          path: daily-${{ steps.tag.outputs.TAG }}.tar
