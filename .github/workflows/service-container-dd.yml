@@ -29,20 +29,20 @@ jobs:
         --health-interval 10s 
         --health-timeout 5s
         --health-retries 5
-      steps:
-        - name: Checkout the code
-          uses: actions/checkout@v2
+    steps:
+      - name: Checkout the code
+        uses: actions/checkout@v2
 
-        - name: Setup up Python
-          uses: actions/setup-python@v2
-          with:
-            python-version: '3.x'
-        
-        - name: Seed the datbase
-          run: python seed_database.py 
-          env: 
-            DATABASE_HOST: localhost
-            DATABASE_NAME: ${{ env.DATABASE_NAME }}
-            DATABASE_USER: ${{ env.DATABASE_USER }}
-            DATABASE_PASS: ${{ env.DATABASE_PASS }}
-            DATABASE_PORT: ${{ env.DATABASE_PORT }}
+      - name: Setup up Python
+        uses: actions/setup-python@v2
+        with:
+          python-version: '3.x'
+      
+      - name: Seed the datbase
+        run: python seed_database.py 
+        env: 
+          DATABASE_HOST: localhost
+          DATABASE_NAME: ${{ env.DATABASE_NAME }}
+          DATABASE_USER: ${{ env.DATABASE_USER }}
+          DATABASE_PASS: ${{ env.DATABASE_PASS }}
+          DATABASE_PORT: ${{ env.DATABASE_PORT }}
